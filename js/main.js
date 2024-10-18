@@ -1,5 +1,5 @@
 import Shape from './shape.js'
-
+import EvilCircle from './evil-circle.js';
 
 // set up canvas
 
@@ -8,6 +8,11 @@ const ctx = canvas.getContext("2d");
 
 const width = (canvas.width = window.innerWidth);
 const height = (canvas.height = window.innerHeight);
+
+const balls = [];
+const evil = new EvilCircle(50, 50, canvas);
+const ballCount = document.querySelector('p');
+
 
 // function to generate random number
 
@@ -78,7 +83,7 @@ class Ball extends Shape {
 
 
 
-const balls = [];
+
 
 while (balls.length < 25) {
   const size = random(10, 20);
@@ -100,11 +105,20 @@ function loop() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
   ctx.fillRect(0, 0, width, height);
 
+  let count = 0;
   for (const ball of balls) {
-    ball.draw();
-    ball.update();
-    ball.collisionDetect();
+    if(ball.exists) {
+      ball.draw();
+      ball.update();
+      ball.collisionDetect();
+      count++;
+    }
   }
+
+  evil.draw(ctx);
+  evil.checkBounds(canvas);
+  evil.collisionDetect(balls);
+  ballCount.textContent = 'Ball count: ' + count;
 
   requestAnimationFrame(loop);
 }

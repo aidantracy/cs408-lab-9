@@ -22,4 +22,16 @@ QUnit.module('Evil Circle extends Shape class', function() {
         var circle = new EvilCircle(1, 2, 3, 4);
         assert.ok(circle instanceof Shape, 'EvilCircle instance should be a Shape');
     });
+
+    QUnit.test('EvilCircle velX value is 20', function(assert) {
+        var circle = new EvilCircle(1, 2, 3, 4);
+        assert.equal(20, circle.velX, 'Evil circle velX value should be 20');
+    });
+
+    QUnit.test('EvilCircle color is white', function(assert) {
+        var circle = new EvilCircle(1, 2, 3, 4);
+        assert.equal('white', circle.color, 'Evil Circle should be white');
+    });
+
+
 });

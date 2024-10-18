@@ -9,6 +9,6 @@ class Shape {
       this.velX = velX;
       this.velY = velY;
     }
-  }
+}
 
   export default Shape;
